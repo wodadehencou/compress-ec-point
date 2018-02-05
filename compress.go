@@ -53,7 +53,7 @@ func Decompress(curve elliptic.Curve, data []byte) (x, y *big.Int) {
 
 			y = new(big.Int).ModSqrt(x3, curve.Params().P)
 			if y == nil {
-				x, y = nil, nil
+				return nil, nil
 			}
 			if y.Bit(0) != uint(data[0]&0x01) {
 				y.Sub(curve.Params().P, y)
